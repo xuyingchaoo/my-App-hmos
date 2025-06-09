@@ -1,0 +1,14 @@
+{
+  "dev": {
+    "baseUrl": "https://hengtai.ruiztech.cn:4443/",
+    "login": "ucenter/auth/login/password"
+  },
+  "test": {
+    "baseUrl": "https://hengtai.ruiztech.cn:4443/",
+    "login": "ucenter/auth/login/password'"
+  },
+  "prod": {
+    "baseUrl": "https://hengtai.ruiztech.cn:4443/",
+    "login": "ucenter/auth/login/password'"
+  }
+}

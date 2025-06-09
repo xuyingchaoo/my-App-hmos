@@ -6,8 +6,9 @@ interface icon {
   url:string;
   text: string;
 }
+@Entry
 @Component
-struct homeIndex {
+export struct homeIndex {
   @State showEye: boolean = false
   @State icons:icon[] = [
     { icon: 'images/icon01.png',url:'pages/login/index', text: '登录' },
@@ -69,4 +70,3 @@ struct homeIndex {
     }.width('100%').height('100%').justifyContent(FlexAlign.Start).backgroundImage('images/bg.png').backgroundColor('#F4F6FA')
   }
 }
-export {homeIndex};

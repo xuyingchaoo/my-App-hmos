@@ -40,10 +40,14 @@ async function doAesCbc(plainText:string): Promise<string> {
       return encryptText
     }
     console.log("aescbc2 ", 'decryptText: ' + decryptText);
+
+    return ''
   } catch (err) {
     console.log("aescbc2 ", 'err: ' + err);
+    return ''
   }
 }
+
 @Component
 export struct LoginInfo {
   @State mobile: string = '13612345678'
@@ -132,18 +136,19 @@ export struct LoginInfo {
                 cancel: () => {}
               })
           } else {
-            const psd = await doAesCbc(this.password)
-            const data:FormData = {
-              mobile: this.mobile,
-              password: psd,
-              uuid:this.uuid,
-              imageCode:this.imageCode
-            }
-
-            Logger.info(psd)
-            const result = await doLogin(data)
-            Logger.info(JSON.stringify(result.data))
-            this.resultJson = JSON.stringify(result.data)
+            router.replaceUrl({ url: 'pages/Home' });
+            // const psd = await doAesCbc(this.password)
+            // const data:FormData = {
+            //   mobile: this.mobile,
+            //   password: psd,
+            //   uuid:this.uuid,
+            //   imageCode:this.imageCode
+            // }
+            //
+            // Logger.info(psd)
+            // const result = await doLogin(data)
+            // Logger.info(JSON.stringify(result.data))
+            // this.resultJson = JSON.stringify(result.data)
           }
         })
         Text(this.resultJson)

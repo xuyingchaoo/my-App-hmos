@@ -1,4 +1,5 @@
-import {homeIndex} from '../pages/home/index'
+import { homeIndex } from '../pages/home/index'
+import { ListPage } from '../pages/home/list'
 
 // Tab配置数据
 interface tab {
@@ -40,7 +41,7 @@ struct TabBarBottom {
     if (this.tabsIndex === 0) {
       homeIndex()
     } else if (this.tabsIndex === 1) {
-      // DiscoverPage()
+      ListPage()
     } else {
       // ProfilePage()
     }

@@ -18,7 +18,8 @@ const instance: AxiosInstance = axios.create({
   timeout: 100000,
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
-    'Content-Language': 'zh_CN'
+    'Content-Language': 'zh_CN',
+    'deviceId':'123456'
   },
 });
 
@@ -28,6 +29,7 @@ instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = 'token....'
   if (token) {
     config.headers['Authorization'] = 'Bearer ' + token //设置token
+    config.headers['deviceId'] = '123456' //设置token
   }
   return config
 }, (error: AxiosError) => {

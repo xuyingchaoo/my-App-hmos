@@ -2,15 +2,15 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "module description"
+      "value": "描述1234"
     },
     {
       "name": "EntryAbility_desc",
-      "value": "description"
+      "value": "描述ABCD"
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "测试应用"
     }
   ]
 }

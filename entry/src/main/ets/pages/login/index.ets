@@ -25,25 +25,25 @@ function doLogin(data:FormData){
   return http.post<ApiResponse>("ucenter/auth/login/password", data)
 }
 async function doAesCbc(plainText:string): Promise<string> {
-  let key = '1234567890123456'; //长度16，实际使用时建议使用安全随机数生成，不能硬编码在代码中
-  let iv = '1234567890123456'; //长度16，实际使用时建议使用安全随机数生成，不能硬编码在代码中
+  let key = '1234567891234567'; //长度16，实际使用时建议使用安全随机数生成，不能硬编码在代码中
+  let iv = '9876543217654321'; //长度16，实际使用时建议使用安全随机数生成，不能硬编码在代码中
   let keyUint8 = new Uint8Array(buffer.from(key, 'utf-8').buffer);
   let ivUint8 = new Uint8Array(buffer.from(iv, 'utf-8').buffer);
 
   try {
     let encryptText = await AegAesCbc.ohAegAesCbcEncTextHex(plainText, keyUint8, ivUint8);
-    console.log("aescbc2 ", 'encryptText: ' + encryptText);
+    Logger.info("aescbc2 ", 'encryptText: ' + encryptText);
 
     let decryptText = await AegAesCbc.ohAegAesCbcDecTextHex(encryptText, keyUint8);
     if (plainText === decryptText) {
-      console.info('aescbc2 decrypt ok');
+      Logger.info('aescbc2 decrypt ok');
       return encryptText
     }
-    console.log("aescbc2 ", 'decryptText: ' + decryptText);
+    Logger.info("aescbc2 ", 'decryptText: ' + decryptText);
 
     return ''
   } catch (err) {
-    console.log("aescbc2 ", 'err: ' + err);
+    Logger.info("aescbc2 ", 'err: ' + err);
     return ''
   }
 }
@@ -136,16 +136,17 @@ export struct LoginInfo {
                 cancel: () => {}
               })
           } else {
-            router.replaceUrl({ url: 'pages/Home' });
             // const psd = await doAesCbc(this.password)
             // const data:FormData = {
             //   mobile: this.mobile,
             //   password: psd,
             //   uuid:this.uuid,
-            //   imageCode:this.imageCode
+            //   imageCode:this.imageCode,
             // }
             //
-            // Logger.info(psd)
+            // Logger.info(data)
+            router.replaceUrl({ url: 'pages/Home' });
+
             // const result = await doLogin(data)
             // Logger.info(JSON.stringify(result.data))
             // this.resultJson = JSON.stringify(result.data)

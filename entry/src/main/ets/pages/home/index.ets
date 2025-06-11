@@ -16,7 +16,7 @@ export struct homeIndex {
     { icon: 'images/icon03.png',url:'images/statistics-active.png', text: '新增客户' },
     { icon: 'images/icon04.png',url:'images/base-active.png', text: '新增入库单' },
     { icon: 'images/icon01.png',url:'images/home-active.png', text: '新增销售单' },
-    { icon: 'images/icon02.png',url:'images/list-active.png', text: '新增采购单' },
+    { icon: 'images/icon02.png',url:'images/list-active.png', text:  '新增采购单' },
     { icon: 'images/icon03.png',url:'images/statistics-active.png', text: '新增客户' },
     { icon: 'images/icon04.png',url:'images/base-active.png', text: '新增入库单' },
   ]
@@ -52,6 +52,7 @@ export struct homeIndex {
       // Flex({direction:FlexDirection.Row,wrap:FlexWrap.Wrap}){
       //
       // }
+      // 入口区域
       GridRow({
         columns:4
       }){
@@ -67,6 +68,18 @@ export struct homeIndex {
         })
 
       }.backgroundColor('white').margin(10).borderRadius(10).padding({top:20,right:20,bottom:10,left:20})
+
+      // 列表展示
+      // Column(){
+      //   ForEach(this.icons,(item:icon,index:number)=>{
+      //     Column(){
+      //       Text(item.icon).width(40).height(40).margin({bottom:10})
+      //       Text(item.text).fontSize(12)
+      //     }
+      //   })
+      // }
     }.width('100%').height('100%').justifyContent(FlexAlign.Start).backgroundImage('images/bg.png').backgroundColor('#F4F6FA')
+
+
   }
 }

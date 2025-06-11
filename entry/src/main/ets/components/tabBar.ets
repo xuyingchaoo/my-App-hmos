@@ -1,5 +1,6 @@
 import { homeIndex } from '../pages/home/index'
 import { ListPage } from '../pages/home/list'
+import { BasePage } from '../pages/home/base'
 
 // Tab配置数据
 interface tab {
@@ -42,8 +43,10 @@ struct TabBarBottom {
       homeIndex()
     } else if (this.tabsIndex === 1) {
       ListPage()
-    } else {
-      // ProfilePage()
+    } else if (this.tabsIndex === 2) {
+      // ProfilePage
+    } else if (this.tabsIndex === 3) {
+      BasePage()
     }
   }
   @Builder TabBarBuilder(index: number, selectedImage: string, unselectedImage: string, tabBarName: string) {

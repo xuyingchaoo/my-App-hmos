@@ -1,13 +1,19 @@
 import axios, { InternalAxiosRequestConfig, AxiosResponse, AxiosError, AxiosInstance } from '@ohos/axios';
-import { promptAction } from '@kit.ArkUI';
+import promptAction from '@ohos.promptAction';
 import { checkStatus } from './checkStatus';
 import { logger } from './Logger';
 import apiConfig from '../../resources/base/profile/api_config.json';
-
-interface ApiResponse<T> { //根据项目实际项目修改
+interface pageData {
+  pages?:string;
+  current?:string;
+  size?: string;
+  total?:string;
+  records?:Array<object>;
+}
+interface ApiResponse<pageData> { //根据项目实际项目修改
   code?: number;
-  data: T | null;
-  message?: string;
+  data: pageData | null;
+  msg?: string;
 }
 
 // 创建实例
@@ -19,21 +25,22 @@ const instance: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
     'Content-Language': 'zh_CN',
-    'deviceId':'123456'
+    'deviceId':''
   },
 });
 
 // 添加请求拦截器
 instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   // 对请求数据做点什么
-  const token = 'token....'
+  const token = '6852b09bdb186ed36e71a82dd0e4bd1d'
   if (token) {
-    config.headers['Authorization'] = 'Bearer ' + token //设置token
-    config.headers['deviceId'] = '123456' //设置token
+    config.headers['token'] = token //设置token
+    config.headers['meta-tenant-id'] = "1676491049528705026"
   }
   return config
 }, (error: AxiosError) => {
   // 对请求错误做些什么
+  logger.error("Error1", JSON.stringify(error))
   return Promise.reject(error)
 })
 
@@ -41,26 +48,25 @@ instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 instance.interceptors.response.use((response: AxiosResponse) => {
   // 对响应数据做点什么
   // 下面配置根据系统返回来配置的，不同的系统配置不同
-  if (response.data.code == 200) { // 这里是举例 要根据自己项目的实际情况进行处理
+  if (response.data.code == 0) { // 这里是举例 要根据自己项目的实际情况进行处理
     // promptAction.showToast({
     //   //用到了 @kit.ArkUI 的 promptAction进行系统弹窗提示
     //   message: response.data.massage,
     //   duration: 2000,
     //   alignment: Alignment.Center
     // });
-    logger.debug("请求成功", JSON.stringify(response))
-    return Promise.reject(response.data);
+    logger.info("请求成功", JSON.stringify(response))
+    return Promise.resolve(response.data);
   } else {
+    logger.error("Error2", JSON.stringify(response))
+
     // 根据不同的错误码进行不同的处理
     // promptAction.showToast({
-    //   message: response.data.message || '请求失败，请稍后重试',
-    //   duration: 2000,
-    //   alignment: Alignment.Center
-    // });
-    logger.error("Error", JSON.stringify(response))
-    return Promise.reject(response);
+    //   message: response.data.msg,
+    //   duration: 2000
+    // })
+    return Promise.resolve(response.data);
   }
-  return response
 }, (error: AxiosError) => {
   // 请求超时 && 网络错误单独判断，没有 response
   if (error.message.indexOf("timeout") !== -1) {

@@ -2,6 +2,8 @@
   "src": [
     "pages/Index",
     "pages/Home",
-    "pages/form"
+    "pages/form",
+    "pages/customer/form",
+    "pages/customer/list"
   ]
 }

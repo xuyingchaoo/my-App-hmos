@@ -1,6 +1,7 @@
 import { homeIndex } from '../pages/home/index'
 import { ListPage } from '../pages/home/list'
 import { BasePage } from '../pages/home/base'
+import { StatisticsPage } from '../pages/home/statistics'
 
 // Tab配置数据
 interface tab {
@@ -44,7 +45,7 @@ struct TabBarBottom {
     } else if (this.tabsIndex === 1) {
       ListPage()
     } else if (this.tabsIndex === 2) {
-      // ProfilePage
+      StatisticsPage()
     } else if (this.tabsIndex === 3) {
       BasePage()
     }

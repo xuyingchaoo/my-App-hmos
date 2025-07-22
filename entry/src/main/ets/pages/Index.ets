@@ -8,7 +8,6 @@ struct Index {
   controller: webview.WebviewController = new webview.WebviewController();
   build() {
     Column(){
-      // TabBarBottom()
       LoginInfo()
     }
     .height('100%')

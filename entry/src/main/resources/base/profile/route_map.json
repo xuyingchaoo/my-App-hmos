@@ -1,0 +1,28 @@
+{
+  "routerMap": [
+    {
+      "name": "CustomerDetails",
+      "pageSourceFile": "src/main/ets/pages/customer/details.ets",
+      "buildFunction": "CustomerDetailsBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "CustomerList",
+      "pageSourceFile": "src/main/ets/pages/customer/list.ets",
+      "buildFunction": "CustomerListBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "CustomerForm",
+      "pageSourceFile": "src/main/ets/pages/customer/form.ets",
+      "buildFunction": "CustomerFormBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    }
+  ]
+}

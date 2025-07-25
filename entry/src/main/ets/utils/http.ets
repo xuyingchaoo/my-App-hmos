@@ -1,5 +1,5 @@
 import axios, { InternalAxiosRequestConfig, AxiosResponse, AxiosError, AxiosInstance } from '@ohos/axios';
-import promptAction from '@ohos.promptAction';
+import { UIContext } from '@kit.ArkUI';
 import { checkStatus } from './checkStatus';
 import { logger } from './Logger';
 import apiConfig from '../../resources/base/profile/api_config.json';
@@ -15,6 +15,8 @@ interface ApiResponse<pageData> { //根据项目实际项目修改
   data: pageData | null;
   msg?: string;
 }
+const newUIContext = new UIContext()
+const promptAction = newUIContext.getPromptAction()
 
 // 创建实例
 const instance: AxiosInstance = axios.create({
@@ -32,10 +34,10 @@ const instance: AxiosInstance = axios.create({
 // 添加请求拦截器
 instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   // 对请求数据做点什么
-  const token = '6852b09bdb186ed36e71a82dd0e4bd1d'
+  const token = AppStorage.get('token') || "ea9c70b22b423f9918b3e703e9ec2ce7"
   if (token) {
     config.headers['token'] = token //设置token
-    config.headers['meta-tenant-id'] = "1676491049528705026"
+    config.headers['meta-tenant-id'] = AppStorage.get('tenantId') || "1676491049528705026"
   }
   return config
 }, (error: AxiosError) => {
@@ -61,10 +63,13 @@ instance.interceptors.response.use((response: AxiosResponse) => {
     logger.error("Error2", JSON.stringify(response))
 
     // 根据不同的错误码进行不同的处理
-    // promptAction.showToast({
-    //   message: response.data.msg,
-    //   duration: 2000
-    // })
+    promptAction.showToast({
+      message: response.data.msg,
+      duration: 2000
+    })
+    if(response.data.code == 401){
+      newUIContext.getRouter().replaceUrl({url:"pages/login/index"})
+    }
     return Promise.resolve(response.data);
   }
 }, (error: AxiosError) => {

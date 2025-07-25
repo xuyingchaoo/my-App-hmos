@@ -1,9 +1,7 @@
 {
   "src": [
-    "pages/Index",
+    "pages/login/index",
     "pages/Home",
-    "pages/form",
-    "pages/customer/form",
-    "pages/customer/list"
+    "pages/form"
   ]
 }

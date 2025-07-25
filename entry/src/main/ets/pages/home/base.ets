@@ -14,7 +14,6 @@ interface UserInfo{
   roleNameList?:Array<string>
 }
 
-@Entry
 @Component
 export struct BasePage {
   @State icons:icon[] = [

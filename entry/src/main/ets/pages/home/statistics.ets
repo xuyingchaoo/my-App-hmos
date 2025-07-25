@@ -1,4 +1,3 @@
-@Entry
 @Component
 export struct StatisticsPage {
   build() {

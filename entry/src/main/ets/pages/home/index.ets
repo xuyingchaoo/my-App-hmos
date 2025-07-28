@@ -14,7 +14,7 @@ interface icon {
 export struct homeIndex {
   @State showEye: boolean = false
   @State icons:icon[] = [
-    { icon: 'images/icon01.png',name:'CustomerForm', text: '新增客户' },
+    { icon: 'images/icon03.png',name:'CustomerForm', text: '新增客户' },
     { icon: 'images/icon02.png',name:'', text: '新增采购单' },
     { icon: 'images/icon03.png',name:'', text: '新增客户' },
     { icon: 'images/icon04.png',name:'', text: '新增入库单' },
@@ -23,6 +23,8 @@ export struct homeIndex {
     { icon: 'images/icon03.png',name:'', text: '新增客户' },
     { icon: 'images/icon04.png',name:'', text: '新增入库单' },
   ]
+  @State saleSearch:string = '今日'
+  @State purchaseSearch:string = '今日'
   toPage?: (name:string) => void;
 
   private scrollerForScroll: Scroller = new Scroller();
@@ -125,9 +127,15 @@ export struct homeIndex {
                 .width(40)
                 .textAlign(TextAlign.Center)
                 .padding(3)
-                .backgroundColor('#fff')
-                .fontColor('#3296fa')
+                .backgroundColor(this.saleSearch == '今日'?'#fff':'')
+                .fontColor(this.saleSearch=='今日'?'#3296fa':"#000").onClick(()=>{
+                  this.saleSearch = '今日'
+              })
               Text('本月').fontSize(14).width(40).textAlign(TextAlign.Center).padding(3)
+                .backgroundColor(this.saleSearch == '本月'?'#fff':'')
+                .fontColor(this.saleSearch=='本月'?'#3296fa':"#000").onClick(()=>{
+                this.saleSearch = '本月'
+              })
             }.backgroundColor('#f5f6fa').padding(4).borderRadius(3)
           }.margin({ bottom: 10 })
 
@@ -188,9 +196,15 @@ export struct homeIndex {
                 .width(40)
                 .textAlign(TextAlign.Center)
                 .padding(3)
-                .backgroundColor('#fff')
-                .fontColor('#3296fa')
+                .backgroundColor(this.purchaseSearch == '今日'?'#fff':'')
+                .fontColor(this.purchaseSearch=='今日'?'#3296fa':"#000").onClick(()=>{
+                this.purchaseSearch = '今日'
+              })
               Text('本月').fontSize(14).width(40).textAlign(TextAlign.Center).padding(3)
+                .backgroundColor(this.purchaseSearch == '本月'?'#fff':'')
+                .fontColor(this.purchaseSearch=='本月'?'#3296fa':"#000").onClick(()=>{
+                this.purchaseSearch = '本月'
+              })
             }.backgroundColor('#f5f6fa').padding(4).borderRadius(3)
           }.margin({ bottom: 10 })
 

@@ -15,7 +15,7 @@ export struct homeIndex {
   @State showEye: boolean = false
   @State icons:icon[] = [
     { icon: 'images/icon03.png',name:'CustomerForm', text: '新增客户' },
-    { icon: 'images/icon02.png',name:'', text: '新增采购单' },
+    { icon: 'images/icon02.png',name:'ProductTypeList', text: '新增分类' },
     { icon: 'images/icon03.png',name:'', text: '新增客户' },
     { icon: 'images/icon04.png',name:'', text: '新增入库单' },
     { icon: 'images/icon01.png',name:'', text: '新增销售单' },

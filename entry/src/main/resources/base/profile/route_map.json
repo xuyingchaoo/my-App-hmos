@@ -23,6 +23,14 @@
       "data": {
         "description": "this is pageOne"
       }
+    },
+    {
+      "name": "ProductTypeList",
+      "pageSourceFile": "src/main/ets/pages/productType/list.ets",
+      "buildFunction": "ProductTypeListBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
     }
   ]
 }

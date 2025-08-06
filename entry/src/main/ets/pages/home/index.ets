@@ -14,7 +14,7 @@ interface icon {
 export struct homeIndex {
   @State showEye: boolean = false
   @State icons:icon[] = [
-    { icon: 'images/icon01.png',name:'CustomerForm', text: '新增客户' },
+    { icon: 'images/icon03.png',name:'CustomerForm', text: '新增客户' },
     { icon: 'images/icon02.png',name:'', text: '新增采购单' },
     { icon: 'images/icon03.png',name:'', text: '新增客户' },
     { icon: 'images/icon04.png',name:'', text: '新增入库单' },
@@ -23,6 +23,8 @@ export struct homeIndex {
     { icon: 'images/icon03.png',name:'', text: '新增客户' },
     { icon: 'images/icon04.png',name:'', text: '新增入库单' },
   ]
+  @State saleSearch:string = '今日'
+  @State purchaseSearch:string = '今日'
   toPage?: (name:string) => void;
 
   private scrollerForScroll: Scroller = new Scroller();
@@ -125,9 +127,15 @@ export struct homeIndex {
                 .width(40)
                 .textAlign(TextAlign.Center)
                 .padding(3)
-                .backgroundColor('#fff')
-                .fontColor('#3296fa')
+                .backgroundColor(this.saleSearch == '今日'?'#fff':'')
+                .fontColor(this.saleSearch=='今日'?'#3296fa':"#000").onClick(()=>{
+                  this.saleSearch = '今日'
+              })
               Text('本月').fontSize(14).width(40).textAlign(TextAlign.Center).padding(3)
+                .backgroundColor(this.saleSearch == '本月'?'#fff':'')
+                .fontColor(this.saleSearch=='本月'?'#3296fa':"#000").onClick(()=>{
+                this.saleSearch = '本月'
+              })
             }.backgroundColor('#f5f6fa').padding(4).borderRadius(3)
           }.margin({ bottom: 10 })
 
@@ -175,69 +183,8 @@ export struct homeIndex {
         .borderRadius(6)
         .height(250)
 
-        Column() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Row() {
-              Image('images/purchase-board.png').width(20).height(20).margin({ right: 10 })
-              Text('采购看板').fontSize(18).fontWeight(500)
-            }
 
-            Row() {
-              Text('今日')
-                .fontSize(14)
-                .width(40)
-                .textAlign(TextAlign.Center)
-                .padding(3)
-                .backgroundColor('#fff')
-                .fontColor('#3296fa')
-              Text('本月').fontSize(14).width(40).textAlign(TextAlign.Center).padding(3)
-            }.backgroundColor('#f5f6fa').padding(4).borderRadius(3)
-          }.margin({ bottom: 10 })
-
-          GridRow({
-            columns: 2,
-            gutter: { x: 10, y: 10 },
-            breakpoints: {
-              value: ["500vp", "500vp"],
-              reference: BreakpointsReference.WindowSize
-            },
-            direction: GridRowDirection.Row
-          }) {
-            GridCol() {
-              Flex({ direction: FlexDirection.Column }) {
-                Text('销售金额').width('100%')
-                Text('0').width('100%').margin({ top: 10 }).fontWeight('500').fontSize(20)
-              }
-            }.height('80').padding(15).backgroundColor('#fff8ef').borderRadius(5)
-
-            GridCol() {
-              Flex({ direction: FlexDirection.Column }) {
-                Text('实际金额(销售)').width('100%')
-                Text('0').width('100%').margin({ top: 10 }).fontWeight('500').fontSize(20)
-              }
-            }.height('80').padding(15).backgroundColor('#f3f7ff').borderRadius(5)
-
-            GridCol() {
-              Flex({ direction: FlexDirection.Column }) {
-                Text('退货金额').width('100%')
-                Text('0').width('100%').margin({ top: 10 }).fontWeight('500').fontSize(20)
-              }
-            }.height('80').padding(15).backgroundColor('#f4f4fd').borderRadius(5)
-
-            GridCol() {
-              Flex({ direction: FlexDirection.Column }) {
-                Text('实际金额(退货)').width('100%')
-                Text('0').width('100%').margin({ top: 10 }).fontWeight('500').fontSize(20)
-              }
-            }.height('80').padding(15).backgroundColor('#f4fafc').borderRadius(5)
-          }.width("100%").height("100%")
-        }
-        .backgroundColor('#fff')
-        .margin(10)
-        .padding(10)
-        .borderRadius(6)
-        .height(250)
       }.width('100%').justifyContent(FlexAlign.Start)
-    }.width('100%').backgroundColor('#F4F6FA').backgroundImage('images/bg.png').backgroundImageSize({width:"100%"})
+    }.width('100%').backgroundColor('#F4F6FA').backgroundImage('images/bg.png').backgroundImageSize({width:"100%"}).align(Alignment.TopStart).height("100%")
   }
 }

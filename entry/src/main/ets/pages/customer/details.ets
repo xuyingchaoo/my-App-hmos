@@ -31,8 +31,8 @@ struct CustomerDetails {
   async getCustomerInfo(id:string){
     try {
       http.get<Details>("/sales/customer/info",{id} as QueryParams).then(res=>{
+        console.info("获取用户数据:", JSON.stringify(res));
         if(res.code == 0 && res.data){
-          console.info("获取用户数据:", JSON.stringify(res));
           this.customerInfo = res.data
         }
       })
@@ -125,7 +125,7 @@ struct CustomerDetails {
                       message: '删除成功！',
                       duration: 2000
                     })
-                    this.pathStack.pop()
+                    this.pathStack.pop(1)
                     // this.getUIContext().getRouter().back()
                   }
                 })
@@ -145,8 +145,6 @@ struct CustomerDetails {
       if(query.length && query[0].id){
         this.getCustomerInfo(query[0].id)
       }
-    }).onShown(()=>{
-      console.info('show----------------')
     })
   }
 }

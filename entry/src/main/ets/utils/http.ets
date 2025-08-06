@@ -34,7 +34,7 @@ const instance: AxiosInstance = axios.create({
 // 添加请求拦截器
 instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   // 对请求数据做点什么
-  const token = AppStorage.get('token') || "ea9c70b22b423f9918b3e703e9ec2ce7"
+  const token = AppStorage.get('token') || "379ed67731ff7bdb3ba9d00405fb639e"
   if (token) {
     config.headers['token'] = token //设置token
     config.headers['meta-tenant-id'] = AppStorage.get('tenantId') || "1676491049528705026"
